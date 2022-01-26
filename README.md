@@ -1,2 +1,2 @@
 # BoomTownAssignment
-This repo contains the code for my submission for BoomTown's interview assignment
+This repo contains the code for Cormac Conahan's submission for BoomTown's interview assignment
