@@ -12,7 +12,7 @@ class BoomTownAPIService
 		HttpClient = new HttpClient();
         HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(User, "1"));
 	}
-	public async Task<BoomTownTopLevel> GetTopLevelObject()
+	public async Task<BoomTown> GetBoomTownObject()
 	{
 		using (var request = new HttpRequestMessage(HttpMethod.Get, URL))
 		{
@@ -22,17 +22,17 @@ class BoomTownAPIService
 
             string responseString = await response.Content.ReadAsStringAsync();
 
-            BoomTownTopLevel? returnObject = JsonSerializer.Deserialize<BoomTownTopLevel>(responseString);
+            BoomTown? returnObject = JsonSerializer.Deserialize<BoomTown>(responseString);
 
-			return returnObject != null ? returnObject : new BoomTownTopLevel();
+			return returnObject != null ? returnObject : new BoomTown();
 		}
 	}
     
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
-        BoomTownTopLevel topLevel = boomTown.GetTopLevelObject().Result;
-        string topLevelString = JsonSerializer.Serialize<BoomTownTopLevel>(topLevel);
+        BoomTown topLevel = boomTown.GetBoomTownObject().Result;
+        string topLevelString = JsonSerializer.Serialize<BoomTown>(topLevel);
 
         Console.WriteLine("{0}",topLevelString);
     }

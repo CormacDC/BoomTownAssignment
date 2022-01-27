@@ -1,4 +1,4 @@
-public class BoomTownTopLevel
+public class BoomTown
 {
     public string login { get; set; } = string.Empty;
     public int id { get; set; }
