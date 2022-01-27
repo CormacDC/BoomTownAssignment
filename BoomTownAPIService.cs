@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Text.Json;
 
 class BoomTownAPIService
 {
@@ -9,9 +10,9 @@ class BoomTownAPIService
     public BoomTownAPIService()
 	{
 		HttpClient = new HttpClient();
-        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("CormacDC", "1"));
+        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(User, "1"));
 	}
-	public async Task<string> GetData()
+	public async Task<BoomTownTopLevel> GetTopLevelObject()
 	{
 		using (var request = new HttpRequestMessage(HttpMethod.Get, URL))
 		{
@@ -19,14 +20,21 @@ class BoomTownAPIService
 
 			response.EnsureSuccessStatusCode();
 
-			return await response.Content.ReadAsStringAsync();
+            string responseString = await response.Content.ReadAsStringAsync();
+
+            BoomTownTopLevel? returnObject = JsonSerializer.Deserialize<BoomTownTopLevel>(responseString);
+
+			return returnObject != null ? returnObject : new BoomTownTopLevel();
 		}
 	}
     
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
-        Console.WriteLine("{0}",boomTown.GetData().Result);
+        BoomTownTopLevel topLevel = boomTown.GetTopLevelObject().Result;
+        string topLevelString = JsonSerializer.Serialize<BoomTownTopLevel>(topLevel);
+
+        Console.WriteLine("{0}",topLevelString);
     }
 }
 
