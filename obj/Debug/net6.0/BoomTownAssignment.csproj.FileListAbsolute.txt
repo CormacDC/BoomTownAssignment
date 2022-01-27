@@ -1,0 +1,15 @@
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\BoomTownAssignment.exe
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\BoomTownAssignment.deps.json
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\BoomTownAssignment.runtimeconfig.json
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\BoomTownAssignment.dll
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\ref\BoomTownAssignment.dll
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\BoomTownAssignment.pdb
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.csproj.AssemblyReference.cache
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.AssemblyInfoInputs.cache
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.AssemblyInfo.cs
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.csproj.CoreCompileInputs.cache
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.dll
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\ref\BoomTownAssignment.dll
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.pdb
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.genruntimeconfig.cache
