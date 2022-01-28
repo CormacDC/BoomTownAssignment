@@ -4,18 +4,17 @@ using Newtonsoft.Json;
 class BoomTownAPIService
 {
     private readonly HttpClient HttpClient;
-	private const string URL = "https://api.github.com/orgs/boomtownroi";
-    private const string User = "CormacDC";
+	private const string TOPLEVELURL = "https://api.github.com/orgs/boomtownroi";
 
     public BoomTownAPIService()
 	{
 		HttpClient = new HttpClient();
-        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(User, "1.0"));
+        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Product", "1.0"));
 	}
 
-	public async Task<object> GetBoomTownObject()
+	public async Task<object> GetBoomTownObject(string url)
 	{
-		using (var request = new HttpRequestMessage(HttpMethod.Get, URL))
+		using (var request = new HttpRequestMessage(HttpMethod.Get, url))
 		{
 			var response = await HttpClient.SendAsync(request);
 
@@ -24,7 +23,7 @@ class BoomTownAPIService
             string responseString = await response.Content.ReadAsStringAsync();
 
             //dynamic returnObject = JsonSerializer.Deserialize<BoomTown>(responseString);
-            dynamic returnObject = JsonConvert.DeserializeObject(responseString);
+            object returnObject = JsonConvert.DeserializeObject(responseString);
 
 			return returnObject != null ? returnObject : string.Empty;
 		}
@@ -33,12 +32,13 @@ class BoomTownAPIService
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
-        dynamic topLevel = boomTown.GetBoomTownObject().Result;
+        object topLevel = boomTown.GetBoomTownObject(TOPLEVELURL).Result;
 
         //string topLevelString = JsonSerializer.Serialize<BoomTown>(topLevel);
         string topLevelString = JsonConvert.SerializeObject(topLevel);
-
         Console.WriteLine("{0}",topLevelString);
+
+        
     }
 }
 
