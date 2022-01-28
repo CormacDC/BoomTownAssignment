@@ -8,9 +8,10 @@ This program is a console application that was built with .NET SDK version 6.0.1
 
 ## Running
 
-1. In a console or terminal, navigate to the directory where this repo is located on your machine 
-2. Enter `dotnet run`
-3. The output should display to the console
+1. Clone this repo to your desired directory
+2. In a console or terminal, navigate to the directory where this repo is located on your machine 
+3. Enter `dotnet run`
+4. The output should display to the console
 
 ## The Assignment
 
