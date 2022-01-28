@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Headers;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 class BoomTownAPIService
 {
@@ -10,9 +10,10 @@ class BoomTownAPIService
     public BoomTownAPIService()
 	{
 		HttpClient = new HttpClient();
-        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(User, "1"));
+        HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(User, "1.0"));
 	}
-	public async Task<BoomTown> GetBoomTownObject()
+
+	public async Task<object> GetBoomTownObject()
 	{
 		using (var request = new HttpRequestMessage(HttpMethod.Get, URL))
 		{
@@ -22,17 +23,20 @@ class BoomTownAPIService
 
             string responseString = await response.Content.ReadAsStringAsync();
 
-            BoomTown? returnObject = JsonSerializer.Deserialize<BoomTown>(responseString);
+            //dynamic returnObject = JsonSerializer.Deserialize<BoomTown>(responseString);
+            dynamic returnObject = JsonConvert.DeserializeObject(responseString);
 
-			return returnObject != null ? returnObject : new BoomTown();
+			return returnObject != null ? returnObject : string.Empty;
 		}
 	}
     
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
-        BoomTown topLevel = boomTown.GetBoomTownObject().Result;
-        string topLevelString = JsonSerializer.Serialize<BoomTown>(topLevel);
+        dynamic topLevel = boomTown.GetBoomTownObject().Result;
+
+        //string topLevelString = JsonSerializer.Serialize<BoomTown>(topLevel);
+        string topLevelString = JsonConvert.SerializeObject(topLevel);
 
         Console.WriteLine("{0}",topLevelString);
     }

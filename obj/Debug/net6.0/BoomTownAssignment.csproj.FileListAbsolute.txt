@@ -13,3 +13,5 @@ C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\Boo
 C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\ref\BoomTownAssignment.dll
 C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.pdb
 C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.genruntimeconfig.cache
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\CmacD\Desktop\Practice Problems\BoomTownAssignment\obj\Debug\net6.0\BoomTownAssignment.csproj.CopyComplete
