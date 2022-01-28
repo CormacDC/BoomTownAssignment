@@ -75,16 +75,34 @@ class BoomTownAPIService
             }
         }
     }
+
+    public Boolean verifyUpdateCreateDates(string jsonString)
+    {
+        Dictionary<string,string> json = new Dictionary<string, string>();
+        json = JsonConvert.DeserializeObject<Dictionary<string,string>>(jsonString);
+
+        DateTime created = Convert.ToDateTime(json["created_at"]);
+        DateTime updated = Convert.ToDateTime(json["updated_at"]);
+
+        return DateTime.Compare(created,updated) < 0;
+    }
     
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
 
-        string topLevelString = boomTown.GetBoomTownObjectString(TOPLEVELURL).Result;
-        //Console.WriteLine("{0}",topLevelString);
+        Console.WriteLine("=========================================================");
+        Console.WriteLine("Displaying all IDs contained within the top level object's api urls as well as their associated names, if they exist: ");
 
+        string topLevelString = boomTown.GetBoomTownObjectString(TOPLEVELURL).Result;
+        
         boomTown.CrawlURLs(topLevelString, TOPLEVELURL);
 
+        Console.WriteLine("=========================================================");
+        Console.WriteLine("The updated_at value in the top level object contains a later date than the created_at value: " + boomTown.verifyUpdateCreateDates(topLevelString));
+        Console.WriteLine("=========================================================");
+
+        
     }
 }
 
