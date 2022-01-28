@@ -25,3 +25,7 @@ From the top-level organization details result object, complete the following:
 - On the top-level BoomTownROI organization details object, verify that the 'updated_at' value is later than the 'created_at' date.
 
 - On the top-level details object, compare the 'public_repos' count against the repositories array returned from following the 'repos_url', verifying that the counts match. HINT: The public repositories resource only returns a default limit of 30 repo objects per request.
+
+## Final Thoughts and Reflections
+
+Overall, I thoroughly enjoyed this project. I had never previously worked with .NET and my knowledge of C# was limited to what I had learned from scripting game objects in Unity. As such, following through with the decision to code the project entirely in C# .NET became a rigorous but exciting challenge. Looking back, there are certainly things I would change to make the code cleaner and more modular to follow SOLID coding principles more closely. I would also definitely do more research on the idiomatic nuances of C# and .NET such as finding an industry or community standard for handling json objects retrieved from an API, but I am quite happy with the end product and am extremely grateful for this learning opportunity.
