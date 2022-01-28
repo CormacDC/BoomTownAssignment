@@ -46,8 +46,17 @@ class BoomTownAPIService
 
         foreach (var group in obj)
         {
-            //Console.WriteLine((string)group.id);
-            Console.WriteLine("iterates correctly");
+            foreach (var element in group)
+            {
+                if (element.Name == "id")
+                {
+                    Console.WriteLine("ID: " + element.Value);
+                }
+                else if (element.Name == "name")
+                {
+                    Console.WriteLine("Name: " + element.Value + "\n");
+                }
+            }
         }
     }
 
@@ -58,7 +67,9 @@ class BoomTownAPIService
 
         foreach (var element in json)
         {
-            if (element.Value != null && element.Value.Contains(TOPLEVELURL, comparisonType: StringComparison.OrdinalIgnoreCase))
+            if (element.Value != null && 
+                element.Value.ToLower() != url &&
+                element.Value.ToLower().Contains(TOPLEVELURL))
             {
                 printIDs(element.Value);
             }
