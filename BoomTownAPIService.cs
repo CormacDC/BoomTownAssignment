@@ -28,6 +28,14 @@ class BoomTownAPIService
 			return returnObject != null ? returnObject : string.Empty;
 		}
 	}
+
+    public void getIDs(string url){
+        
+    }
+
+    public void CrawlURLs(object json, string url){
+
+    }
     
     static void Main(string[] args)
     {
@@ -38,7 +46,7 @@ class BoomTownAPIService
         string topLevelString = JsonConvert.SerializeObject(topLevel);
         Console.WriteLine("{0}",topLevelString);
 
-        
+
     }
 }
 
