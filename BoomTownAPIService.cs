@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
 class BoomTownAPIService
@@ -22,7 +21,7 @@ class BoomTownAPIService
             int status = (int)response.StatusCode;
             if (status != 200)
             {
-                Console.WriteLine("Something went wrong; got response code " + status);
+                Console.WriteLine("Something went wrong; got response code " + status + " from URL " + url + "\n");
                 return string.Empty;
             }
 
@@ -38,7 +37,6 @@ class BoomTownAPIService
 
         if (objString == string.Empty)
         {
-            Console.WriteLine("Something went wrong getting IDs from URL " + url + "\n");
             return;
         }
 
@@ -84,7 +82,45 @@ class BoomTownAPIService
         DateTime created = Convert.ToDateTime(json["created_at"]);
         DateTime updated = Convert.ToDateTime(json["updated_at"]);
 
+        Console.WriteLine("created_at: " + created);
+        Console.WriteLine("updated_at: " + updated);
+
         return DateTime.Compare(created,updated) < 0;
+    }
+
+    public int countRepos(string jsonString)
+    {
+        Dictionary<string,string> json = new Dictionary<string, string>();
+        json = JsonConvert.DeserializeObject<Dictionary<string,string>>(jsonString);
+
+        string objString = GetBoomTownObjectString(json["repos_url"]).Result;
+
+        if (objString == string.Empty)
+        {
+            return -1;
+        }
+
+        dynamic obj = JsonConvert.DeserializeObject(objString);
+
+        int count = 0;
+        foreach (var element in obj)
+        {
+            count++;
+        }
+
+        return count;
+    }
+
+    public bool areRepoCountsEqual(string jsonString){
+        Dictionary<string,string> json = new Dictionary<string, string>();
+        json = JsonConvert.DeserializeObject<Dictionary<string,string>>(jsonString);
+
+        int public_repos = int.Parse(json["public_repos"]);
+        int count = countRepos(jsonString);
+
+        Console.WriteLine("public_repos contains the value {0} and the repos array contains {1} repos.",public_repos,count);
+
+        return int.Parse(json["public_repos"]) == countRepos(jsonString);
     }
     
     static void Main(string[] args)
@@ -102,7 +138,7 @@ class BoomTownAPIService
         Console.WriteLine("The updated_at value in the top level object contains a later date than the created_at value: " + boomTown.verifyUpdateCreateDates(topLevelString));
         Console.WriteLine("=========================================================");
 
-        
+        Console.WriteLine("The public_repos value matches the number of elements in the repos array in the repos url: " + boomTown.areRepoCountsEqual(topLevelString));
+        Console.WriteLine("=========================================================");
     }
 }
-
