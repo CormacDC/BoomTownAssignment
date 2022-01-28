@@ -6,12 +6,14 @@ class BoomTownAPIService
     private readonly HttpClient HttpClient;
 	private const string TOPLEVELURL = "https://api.github.com/orgs/boomtownroi";
 
+    // constructor for this class; initializes the httpclient with a generic useragent header in order to work with github api
     public BoomTownAPIService()
 	{
 		HttpClient = new HttpClient();
         HttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Product", "1.0"));
 	}
 
+    // async method that will return a string of the input url's response body
 	public async Task<string> GetBoomTownObjectString(string url)
 	{
 		using (var request = new HttpRequestMessage(HttpMethod.Get, url))
@@ -31,6 +33,7 @@ class BoomTownAPIService
 		}
 	}
 
+    // prints the id value of any id key/value pair on the page of the input url
     public void printIDs(string url)
     {
         string objString = GetBoomTownObjectString(url).Result;
@@ -58,6 +61,7 @@ class BoomTownAPIService
         }
     }
 
+    // iterates through each url in the top level object that contains the top level url and prints the id's contained within
     public void CrawlURLs(string jsonString, string url)
     {
         Dictionary<string,string> json = new Dictionary<string, string>();
@@ -74,6 +78,7 @@ class BoomTownAPIService
         }
     }
 
+    // verifies that the creation date is earlier than the update date in the top level object
     public Boolean verifyUpdateCreateDates(string jsonString)
     {
         Dictionary<string,string> json = new Dictionary<string, string>();
@@ -88,6 +93,7 @@ class BoomTownAPIService
         return DateTime.Compare(created,updated) < 0;
     }
 
+    // counts the number of repos contained within the repo page's array
     public int countRepos(string jsonString)
     {
         Dictionary<string,string> json = new Dictionary<string, string>();
@@ -111,6 +117,7 @@ class BoomTownAPIService
         return count;
     }
 
+    // verifies whether or not the number of repos on the repo page matches the value stored in public_repos
     public bool areRepoCountsEqual(string jsonString){
         Dictionary<string,string> json = new Dictionary<string, string>();
         json = JsonConvert.DeserializeObject<Dictionary<string,string>>(jsonString);
@@ -122,7 +129,8 @@ class BoomTownAPIService
 
         return int.Parse(json["public_repos"]) == countRepos(jsonString);
     }
-    
+
+    // static main method; acts as a driver
     static void Main(string[] args)
     {
         BoomTownAPIService boomTown = new BoomTownAPIService();
