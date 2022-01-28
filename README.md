@@ -4,7 +4,7 @@ This repo contains the code for Cormac Conahan's submission for BoomTown's inter
 
 ## Version Info and Details
 
-This program is a console application that was built with .NET SDK version 6.0.101 on a Windows 10 Operating System
+This program is a console application that was built with .NET SDK version 6.0.101 on a Windows 10 Operating System and includes a dependency on Newtonsoft.Json version 9.0.1
 
 ## Running
 
